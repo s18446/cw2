@@ -45,6 +45,14 @@ namespace cw2
             catch (FileNotFoundException e)
             {
                 Console.WriteLine(e.Message);
+                string error = "Podana ścieżka jest niepoprawna.";
+                errorLog(error);
+            }
+            catch(ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                string error = $"Plik {inputDestination} nie istnieje.";
+                errorLog(error);
             }
         }
 
@@ -71,7 +79,7 @@ namespace cw2
                     if (columns.Length != 9 || corrupted)
                     {
                         string errorMessage = "Liczba kolumn jest zbyt mała lub dane zawierają błąd.";
-                        handleCorruptedData(errorMessage);
+                        errorLog(errorMessage);
                         corrupted = false;
                     }
                     else
@@ -96,7 +104,7 @@ namespace cw2
                             if (student.Equals(studentToAdd))
                             {
                                 duplicateStudent = true;
-                                handleCorruptedData(duplicateInfo + student.indexNumber);
+                                errorLog(duplicateInfo + student.indexNumber);
                                 break;
                             }
                         }
@@ -138,7 +146,7 @@ namespace cw2
             }
             return students;
         }
-        private static void handleCorruptedData(string message)
+        private static void errorLog(string message)
         {
             using (StreamWriter writer = new StreamWriter("log.txt"))
             {

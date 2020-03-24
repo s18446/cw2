@@ -25,12 +25,12 @@ namespace cw2
 
                 if (dataType.Equals("xml"))
                 {
-                    var students = handleData(inputDestination);
+                    var studentsList = handleData(inputDestination);
                     var uczelnia = new Uczelnia
                     {
                         createdAt = $"{ DateTime.Now}",
                         author = "Daniel Rogowski",
-                        students = new List<Student>()
+                        students = studentsList
                     };
 
 
@@ -70,8 +70,9 @@ namespace cw2
                     }
                     if (columns.Length != 9 || corrupted)
                     {
-                        string errorMessage = "The numbers of rows is to small or data contained in one of rows is corrupted.";
+                        string errorMessage = "Liczba kolumn jest zbyt mała lub dane zawierają błąd.";
                         handleCorruptedData(errorMessage);
+                        corrupted = false;
                     }
                     else
                     {
@@ -99,6 +100,10 @@ namespace cw2
                                 break;
                             }
                         }
+                        if (!duplicateStudent)
+                        {
+                            students.Add(studentToAdd);
+                        }
 
                         bool studiesInList = false;
                         if (!duplicateStudent)
@@ -121,12 +126,15 @@ namespace cw2
                                 };
                                 activeStudies.Add(studies);
                             }
-                            students.Add(studentToAdd);
                         }
 
                     }
                 }
 
+            }
+            foreach (var s in students)
+            {
+                Console.WriteLine(s);
             }
             return students;
         }

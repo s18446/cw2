@@ -33,5 +33,21 @@ namespace cw2.Models
 
         [XmlAttribute(attributeName: "studiesMode")]
         public string studiesMode { get; set; }
+        public override string ToString()
+        {
+            return base.ToString() + ": " + name + " " + lastName + " " + indexNumber;
+        }
+
+        public bool Equals(Student s)
+        {
+            if (this.indexNumber == s.indexNumber && this.name.Equals(s.name) && this.lastName.Equals(s.lastName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

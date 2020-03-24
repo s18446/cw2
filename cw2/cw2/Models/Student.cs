@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace cw2.Models
 {
-    class Student
+
+    [Serializable]
+    public class Student
     {
         [XmlAttribute(attributeName: "indexNumber")]
         public string indexNumber { get; set; }
@@ -17,7 +17,7 @@ namespace cw2.Models
         public string lastName { get; set; }
 
         [XmlAttribute(attributeName: "birthdate")]
-        public string birthdate { get; set; }
+        public DateTime birthdate { get; set; }
 
         [XmlAttribute(attributeName: "email")]
         public string email { get; set; }
@@ -28,22 +28,10 @@ namespace cw2.Models
         [XmlAttribute(attributeName: "fathersName")]
         public string fathersName { get; set; }
 
-        [XmlAttribute(attributeName: "studies")]
-        public Studies studies { get; set; }
+        [XmlAttribute(attributeName: "studiesName")]
+        public string studiesName { get; set; }
 
-
-
-        //propfull + tabx2
-
-        //     private string _nazwisko;
-        //   public string Nazwisko
-        // {
-        //   get { return _nazwisko; }
-        // set
-        // {
-        //    if (value == null) throw new ArgumentException();
-        //   _nazwisko = value;
-        //   }
-        // }
+        [XmlAttribute(attributeName: "studiesMode")]
+        public string studiesMode { get; set; }
     }
 }

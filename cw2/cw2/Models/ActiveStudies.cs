@@ -5,16 +5,14 @@ using System.Xml.Serialization;
 
 namespace cw2.Models
 {
-    class Studies
+    public class ActiveStudies
     {
-        [XmlAttribute(attributeName: "name")]
+           
+        [XmlAttribute]
         public string name { get; set; }
 
-        [XmlAttribute(attributeName: "mode")]
-        public string mode { get; set; }
-
-
+        [XmlAttribute]
+        public int numberOfStudents { get; set; }
     }
-
-
 }
+
